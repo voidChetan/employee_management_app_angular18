@@ -1,0 +1,47 @@
+.parent{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-2-wrapper {
+    background: #ffd900e0;
+    padding: 50px;
+    border-radius: 8px;
+}
+input.form-control{
+    padding: 11px;
+    border: none;
+    border: 2px solid #405c7cb8;
+    border-radius: 30px;
+    background-color: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+   
+   
+}
+input.form-control:focus{
+    box-shadow: none !important;
+    outline: 0px !important;
+    background-color: transparent;
+}
+button.login-btn{
+    background: #b400ff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+}
+.register-test a{
+    color: #000;
+}
+.social-login button{
+    border-radius: 30px;
+}

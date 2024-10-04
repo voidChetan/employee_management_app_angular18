@@ -1,0 +1,137 @@
+<div class="tab-pane fade show active" id="employees" role="tabpanel">
+    <div class="row">
+        <div class="col-6">
+            <h2>Employees</h2>
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-success" (click)="isFormVisiable.set(true)"> Add New</button>
+        </div>
+    </div>
+   
+
+    <!-- Employee Form -->
+     @if(isFormVisiable()){
+        <form class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="employeeName" class="form-label">Employee Name</label>
+                    <input type="text" class="form-control" name="employeeName" [(ngModel)]="employeeObj.employeeName" id="employeeName" placeholder="Enter employee name">
+                </div>
+                <div class="col-md-6">
+                    <label for="contactNo" class="form-label">Contact No</label>
+                    <input type="text" class="form-control"  name="contactNo" [(ngModel)]="employeeObj.contactNo"id="contactNo" placeholder="Enter contact number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="emailId" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="emailId" [(ngModel)]="employeeObj.emailId" id="emailId" placeholder="Enter email">
+                </div>
+                <div class="col-md-4">
+                    <label for="deptId" class="form-label">Parent Department</label>
+                    <select id="deptId" class="form-select" name="parentDeptId" [(ngModel)]="parentDeptId" (change)="onParentDeptChange()">
+                        <option selected>Select department</option>
+                        @for (item of parentDept$ |async ; track $index) {
+                            <option [value]="item.departmentId">{{item.departmentName}}</option>
+                        }
+                        <!-- Department options -->
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="deptId" class="form-label">Child Department</label>
+                    <select id="deptId" class="form-select" name="deptId" [(ngModel)]="employeeObj.deptId">
+                        <option selected>Select department</option>
+                        @for (item of childDeptList(); track $index) {
+                            <option [value]="item.childDeptId">{{item.departmentName}}</option>
+                        }
+                        <!-- Department options -->
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="employeeObj.password" id="password" placeholder="Enter password">
+                </div>
+                <div class="col-md-6">
+                    <label for="role" class="form-label">Role</label>
+                    <input type="text" class="form-control" name="role" [(ngModel)]="employeeObj.role" id="role" placeholder="Enter role">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select id="gender" class="form-select" name="gender" [(ngModel)]="employeeObj.gender">
+                        <option selected>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            @if(this.employeeObj.employeeId == 0) {
+                <button type="button" class="btn btn-primary mt-3" (click)="onSave()">
+                    @if (isApiCallInProgress()) {
+                        <span class="spinner-grow spinner-grow-sm"></span>
+                    }
+                    Save Employee</button>
+            } @else { 
+                <button type="button" class="btn btn-warning mt-3" (click)="onUpdate()">Update Employee</button>
+            }
+          
+            <button class="btn btn-success mt-3" (click)="isFormVisiable.set(false)"> Close </button>
+        </form>
+     }
+    
+
+    <!-- Employee Table --> 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th>
+                <th>Contact No</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Role</th> 
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (isLoader()) {
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <div class="spinner-grow text-muted"></div>
+                        <div class="spinner-grow text-primary"></div>
+                        <div class="spinner-grow text-success"></div>
+                        <div class="spinner-grow text-info"></div>
+                        <div class="spinner-grow text-warning"></div>
+                        <div class="spinner-grow text-danger"></div>
+                        <div class="spinner-grow text-secondary"></div>
+                        <div class="spinner-grow text-dark"></div>
+                        <div class="spinner-grow text-light"></div>
+                    </td>
+                </tr>
+            } @else {
+                @for (item of employeeList; track $index) {
+                    <tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.employeeName}}</td>
+                        <td>{{item.contactNo}}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{item.deptId}}</td>
+                        <td>{{item.role}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary mt-3" (click)="onEdit(item)">Edit</button>
+                            <button type="button" class="btn btn-danger mt-3" (click)="onDelete(item.employeeId)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+           
+
+           
+            <!-- Data rows go here -->
+        </tbody>
+    </table>
+</div>

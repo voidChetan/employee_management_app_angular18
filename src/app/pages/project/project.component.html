@@ -1,0 +1,41 @@
+<div class="tab-pane fade show active" id="projects" role="tabpanel">
+   
+ 
+    <div class="row">
+        <div class="col-6">
+            <h2>Projects</h2>
+
+        </div>
+        <div class="col-6">
+            <button routerLink="/new-project/0" class="btn bnt-success">New Project</button>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sr No</th>
+                <th>Project Name</th>
+                <th>Client Name</th>
+                <th>Start Date</th>
+                <th>Lead By Employee</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of projectList; track $index) {
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{item.projectName}}</td>
+                    <td>{{item.clientName}}</td>
+                    <td>{{item.startDate}}</td>
+                    <td>{{item.employeeName}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary mt-3" (click)="onEdit(item.projectId)">Edit</button>
+                        <button type="button" class="btn btn-danger mt-3" (click)="onDelete(item.projectId)">Delete</button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

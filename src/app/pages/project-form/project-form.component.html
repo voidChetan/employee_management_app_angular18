@@ -1,0 +1,51 @@
+<div class="tab-pane fade show active" id="projects" role="tabpanel">
+    <h2>New Project</h2>
+    <form class="mb-4" [formGroup]="projectForm">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="projectName" class="form-label">Project Name</label>
+                <input type="text" class="form-control" formControlName="projectName" id="projectName" placeholder="Enter project name">
+            </div>
+            <div class="col-md-6">
+                <label for="clientName" class="form-label">Client Name</label>
+                <input type="text" class="form-control" formControlName="clientName" id="clientName" placeholder="Enter client name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" formControlName="startDate" id="startDate">
+            </div>
+            <div class="col-md-6">
+                <label for="leadByEmpId" class="form-label">Lead By Employee ID</label>
+                <select  class="form-select" formControlName="leadByEmpId" >
+                    <option value="">Select</option>
+                    @for (item of emplList$ | async; track $index) {
+                        <option [value]="item.employeeId">{{item.employeeName}}</option>
+                    }
+                </select> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="contactPerson" class="form-label">Contact Person</label>
+                <input type="text" class="form-control" formControlName="contactPerson" id="contactPerson" placeholder="Enter contact person name">
+            </div>
+            <div class="col-md-4">
+                <label for="contactNoProject" class="form-label">Contact No</label>
+                <input type="text" class="form-control" formControlName="contactNo" id="contactNoProject" placeholder="Enter contact number">
+            </div>
+            <div class="col-md-4">
+                <label for="contactNoProject" class="form-label">EmailId</label>
+                <input type="text" class="form-control" formControlName="emailId" id="contactNoProject" placeholder="Enter contact number">
+            </div>
+        </div>
+        @if(projectForm.controls['projectId'].value == 0) {
+            <button type="button" (click)="onSaveProject()" class="btn btn-primary mt-3">Save Project</button>
+        } @else { 
+            <button type="button" (click)="onUpdate()" class="btn btn-warning mt-3">Update Project</button>
+        }
+      
+      
+    </form>
+    </div>
