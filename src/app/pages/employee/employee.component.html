@@ -49,17 +49,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" [(ngModel)]="employeeObj.password" id="password" placeholder="Enter password">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="role" class="form-label">Role</label>
                     <input type="text" class="form-control" name="role" [(ngModel)]="employeeObj.role" id="role" placeholder="Enter role">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="gender" class="form-label">Gender</label>
                     <select id="gender" class="form-select" name="gender" [(ngModel)]="employeeObj.gender">
                         <option selected>Select gender</option>
@@ -68,7 +66,7 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
-            </div>
+            </div> 
             @if(this.employeeObj.employeeId == 0) {
                 <button type="button" class="btn btn-primary mt-3" (click)="onSave()">
                     @if (isApiCallInProgress()) {
@@ -76,10 +74,10 @@
                     }
                     Save Employee</button>
             } @else { 
-                <button type="button" class="btn btn-warning mt-3" (click)="onUpdate()">Update Employee</button>
+                <button type="button" class="btn btn-warning mt-3 " (click)="onUpdate()">Update Employee</button>
             }
           
-            <button class="btn btn-success mt-3" (click)="isFormVisiable.set(false)"> Close </button>
+            <button class="btn btn-success mt-3 mx-2" (click)="isFormVisiable.set(false)"> Close </button>
         </form>
      }
     
@@ -123,7 +121,7 @@
                         <td>{{item.role}}</td>
                         <td>
                             <button type="button" class="btn btn-primary mt-3" (click)="onEdit(item)">Edit</button>
-                            <button type="button" class="btn btn-danger mt-3" (click)="onDelete(item.employeeId)">Delete</button>
+                            <button type="button" class="btn btn-danger mt-3 mx-2" (click)="onDelete(item.employeeId)">Delete</button>
                         </td>
                     </tr>
                 }

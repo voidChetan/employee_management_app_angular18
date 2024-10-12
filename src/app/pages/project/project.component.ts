@@ -2,11 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IProject } from '../../model/interface/master';
 import { MasterService } from '../../service/master.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,DatePipe],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })

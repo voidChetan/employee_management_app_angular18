@@ -3,11 +3,10 @@
  
     <div class="row">
         <div class="col-6">
-            <h2>Projects</h2>
-
+            <h2>Projects</h2> 
         </div>
-        <div class="col-6">
-            <button routerLink="/new-project/0" class="btn bnt-success">New Project</button>
+        <div class="col-6 text-end">
+            <button routerLink="/new-project/0" class="btn btn-success">New Project</button>
         </div>
     </div>
     <table class="table table-bordered">
@@ -27,11 +26,11 @@
                     <td>{{$index+1}}</td>
                     <td>{{item.projectName}}</td>
                     <td>{{item.clientName}}</td>
-                    <td>{{item.startDate}}</td>
+                    <td>{{item.startDate |date:'dd-MMM-yyyy'}}</td>
                     <td>{{item.employeeName}}</td>
                     <td>
                         <button type="button" class="btn btn-primary mt-3" (click)="onEdit(item.projectId)">Edit</button>
-                        <button type="button" class="btn btn-danger mt-3" (click)="onDelete(item.projectId)">Delete</button>
+                        <button type="button" class="btn btn-danger mt-3 mx-2" (click)="onDelete(item.projectId)">Delete</button>
                     </td>
 
                 </tr>
